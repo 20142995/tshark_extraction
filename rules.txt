@@ -1,0 +1,35 @@
+SQL注入|request.full_uri|(SELECT|UNION|INSERT|UPDATE|DELETE|DROP|ALTER|CREATE|information_schema|table_name|table_schema|cmdshell|ascii|substr|concat_ws|char|group_concat)[\s\(%]+
+SQL注入|request.body|(SELECT|UNION|INSERT|UPDATE|DELETE|DROP|ALTER|CREATE|information_schema|table_name|table_schema|cmdshell|ascii|substr|concat_ws|char\(|group_concat)
+XSS|request.full_uri|(<script|onmouseover|onerror|onload)
+XSS|request.body|(<script|onmouseover|onerror|onload)
+路径穿越|request.full_uri|(\.\./|\.\./|%2e%2e|%252e%252e)
+路径穿越|request.body|(\.\./|\.\./|%2e%2e|%252e%252e)
+扫描工具|request.header|(HTTrack|harvest|audit|dirbuster|pangolin|nmap|sqln|-scan|hydra|Parser|libwww|BBBike|sqlmap|w3af|owasp|Nikto|fimap|havij|PycURL|zmeu|BabyKrokodil|netsparker|httperf|bench|dirsearch|gobuster)
+备份扫描|request.full_uri|\.(bak|backup|old|zip|tar|rar|7z|sql|bz2|db|sqlite|gz|xz)
+备份扫描成功|response.body|^PK
+备份扫描成功|response.body|^Rar!
+备份扫描成功|response.body|((?:DROP|CREATE|(?:UN)?LOCK) TABLE|INSERT INTO)
+备份扫描成功|response.body|^TAPE
+备份扫描成功|response.body|^ustar
+备份扫描成功|response.body|^7z¼¯'
+备份扫描成功|response.body|^1AY&SY
+备份扫描成功|response.body|^SQLite format 3
+备份扫描成功|response.body|^
+备份扫描成功|response.body|^ý7zXZ
+命令执行成功|response.body|(uid=(?:[0-9(a-z)]+) gid=(?:[0-9(a-z)]+))
+文件读取成功|response.body|(root:.*:0:0:)
+文件读取成功|response.body|(\[(?:font|extension|file)s\])
+上传表单|request.body|multipart/form-data
+webshell上传特征|request.body|(session_start|set_time_limit|error_reporting|base64_decode|base64_encode|payloadName)
+webshell参数|request.body|((?:pass|payloadName|key)=['"]\w+['"])
+哥斯拉4.0_eval_b64_strrev_php|request.body|9lbvl2czV2cApQD
+哥斯拉4.0_eval_b64_strrev_php|response.body|9lbvl2czV2cApQD
+哥斯拉4.0_jsp|request.body|(javax\.crypto\.Cipher\.getInstance\("AES"\))
+哥斯拉4.0_jsp|response.body|(javax\.crypto\.Cipher\.getInstance\("AES"\))
+flag|request.full_uri|(flag|666c6167|f1ag|fl4g|Zmxh|&#102|MZWGC|102 108 97 103|1100110|ctf\{|504b0304|key\{|464C4147)
+flag|request.body|(flag|666c6167|f1ag|fl4g|Zmxh|&#102|MZWGC|102 108 97 103|1100110|ctf\{|504b0304|key\{|464C4147)
+flag|response.body|(flag|666c6167|f1ag|fl4g|Zmxh|&#102|MZWGC|102 108 97 103|1100110|ctf\{|504b0304|key\{|464C4147)
+flag|response.header|(flag|666c6167|f1ag|fl4g|Zmxh|&#102|&#66|MZWGC|102 108 97 103|1100110|ctf\{|504b0304|key\{|464C4147)
+冰蝎_b64请求参数|request.body|^[a-zA-Z0-9+/=%]+$
+冰蝎_b64响应参数|response.body|^[a-zA-Z0-9+/=%]+$
+静态资源|request.full_uri|\.(js|css|jpeg|gif|jpg|png|pdf|rar|zip|docx|doc|svg|jpeg|ico|woff|woff2|ttf|otf)$
